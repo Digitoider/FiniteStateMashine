@@ -139,26 +139,39 @@ class Parser{
 
 				if(brackets.curly == 0 && brackets.rounded == 0){
 					indexes.end = i+1;
+					var logicalOperationType = defineLogicalOperationType(expression, indexes);
 					subexpr = this._subexpression(expression, indexes, brackets);
-					components[components.length] = subexpr;
+					components[components.length] = {
+						value: subexpr,
+						logicalOperationType: logicalOperationType,
+						startIndex: indexes.start,
+						endIndex: indexes.end
+					};
 					indexes.start = i+1;
 				}
 			}
 
 			if(expression[i] == signs.disjunction() && brackets.rounded == 0 && brackets.curly == 0){
-				/*if(i > 0 && (expression[i-1] == "}" || expression[i-1] == ")")){
-					indexes.start = i+1;
-					indexes.end = i+1;
-				}*/
 				indexes.end = i;
+				
 				if(indexes.end != indexes.start){
-					components[components.length] = expression.substring(indexes.start, indexes.end);
+					components[components.length] = {
+						value: expression.substring(indexes.start, indexes.end),
+						logicalOperationType: defineLogicalOperationType(expression, indexes),
+						startIndex: indexes.start,
+						endIndex: indexes.end						
+					};
 					indexes.start = i;
 				}
 			}
 		}
 		if(indexes.start < expression.length){
-			components[components.length] = expression.substring(indexes.start, expression.length);
+			components[components.length] = {
+				value: expression.substring(indexes.start, expression.length),
+				logicalOperationType: defineLogicalOperationType(expression, indexes),
+				startIndex: indexes.start,
+				endIndex: expression.length-1						
+			};
 		}
 		for(let i = 0; i < components.length; i++){
 			var length = components[i].length;
@@ -169,6 +182,29 @@ class Parser{
 			}
 		}
 		return components;
+	}
+
+	/**
+	 * fucntion defines the logical operation type	
+	 * @param  {string} expression 
+	 * @param  {struct} indexes    contains start index and end index of distinguishing component
+	 * @return {string}            logical operation type
+	 */
+	defineLogicalOperationType(expression, indexes){
+		
+		if(indexes.start == 0){
+			return "disjunction";
+		}
+
+		if(expression[indexes.start] == "{" || expression[indexes.start] == "("){
+			return "disjunction";
+		}
+
+		if(expression[indexes.start-1] == signs.disjunction()){
+			return "disjunction"
+		}
+
+		return "conjunction";
 	}
 
 	/** 
