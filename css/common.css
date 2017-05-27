@@ -1,0 +1,156 @@
+@font-face{
+	font-family: 'WorkSans';
+	src: local('WorkSans') url('fonts/WorkSans-Regular.ttf');
+}
+
+@media (min-width: 768px){
+	.bs-border{
+		border: 1px solid #B4B4B4;
+		border-radius: 3px;
+		margin-left: 0px;
+		margin-right: 0px;
+	}
+}
+.bs-border{
+	position: relative;
+	padding: 35px 15px 15px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+body{
+	font-family: WorkSans;
+	color: #444444;
+}
+header{
+	text-align: center;
+	height: 30vh;
+	width: 100%;
+	padding: 2em;
+
+	background: #23947b;
+	color: #FFFFFF;
+}
+section{
+	height: 20vh;
+	width: 100%;
+	background: #869423;
+}
+
+.close{
+	margin-left: 5px;
+}
+.menu{
+	margin-bottom: 1em;
+}
+.disjunctiveComponent{
+	display: inline-flex; 
+	font-size: 1.5em;
+	background: #F4FEB0;
+	/* background: #FDE9D9; */ 
+	border-radius: 4px; 
+	padding: 4px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	margin-left: 3px;
+}
+.disjunctionSign{
+	background: #C4D79B;
+	color: #FFF;
+}
+/* .disjunctionSign .caret{
+	opacity: 0;
+} */
+.disjunctionSign .close{
+	padding-bottom: 9px;
+}
+.disjunctionSign .symbol:hover{
+	background: #C4D79B;
+}
+.symbol{
+	display: block;
+	text-align: center;
+	/* width: 0.9em; */
+	margin-right: 0.3em;
+}
+.symbol:hover{
+	background: #EAFF5C;
+}
+.caret{
+	text-align: center;
+}
+
+@keyframes mypointer{
+	from {background: #1A1A1A;}
+	50%{background: #FFC600}
+	to{background: #1A1A1A}
+}
+.textPointer{
+	animation: mypointer 1.3s infinite ease-out;
+	margin-left: 2px;
+	margin-right: 2px;
+	margin-top: 0;
+	margin-bottom: 0;
+	max-width: 3px;
+	border-radius: 0;
+}
+
+.curly{
+	background: #FF8787;
+	color: #FFF;
+}
+.rounded{
+	background: #6D94C5;
+	color: #FFF;
+}
+.panel-success{
+	margin-top: 30px;
+}
+.makrosItem{
+	margin-right: 1em;
+	min-width: 3em;
+}
+
+.regexElem{
+	display: inline-flex;
+	font-size: 35px !important;
+}
+.regexElem:nth-child(1){
+	font-size: 2.5em;
+}
+.place{
+	font-size: 0.25em !important;
+}
+.premain:first-child{
+	margin-top: 0.7em;
+	margin-right: 0.1em;
+	margin-left: 0.1em;
+	height: 30px;
+	width: 1px;
+	font-size: 1.2em;
+}
+.premain{
+	display: inline-block;
+	/*vertical-align: center;*/
+	justify-content: center;
+	margin-bottom: 70px;
+}
+.postmain:first-child{
+	margin-top: 1em;
+	margin-right: 0.1em;
+	margin-left: 0.1em;
+	/* height: 30px;
+	width: 1px; */
+	
+	/* background: black; */
+}
+.postmain{
+	margin-top: 0.9em;
+	display: inline-block;
+}
+#regexContainer{
+	display: inline-flex;
+	flex-wrap: wrap;
+}
+.postmain > .place{
+	margin-top:-10px;
+}

@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Bootstrap 101 Template</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/common.css"/>
+</head>
+<body>
+	<header>
+		<h1>FINITE STATE MACHINE</h1>
+		<h4>Make your life easier</h4>
+	</header>
+
+	<div class="container">
+		<div class="bs-border">
+			<div class="container menu">
+				<div class="btn-toolbar" role="toolbar" aria-label="...">
+				  <div class="btn-group" role="group" aria-label="...">
+				  	<button type="button" class="btn btn-default" data-toggle="modal" data-target="#AddDisjunctiveComponentModal">Add disjunctive component</button>
+					  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#AddMakrosModal">Makros</button>
+					  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#AddSpecialSymbolModal">+S</button>
+					  <button type="button" class="btn btn-default" id="addDisjunctionBtn">∨</button>
+					  <button type="button" class="btn btn-default" id="addLeftCurlyBtn">{</button>
+					  <button type="button" class="btn btn-default" id="addRightCurlyBtn">}</button>
+					  <button type="button" class="btn btn-default" id="addLeftRoundedBtn">(</button>
+					  <button type="button" class="btn btn-default" id="addRightRoundedBtn">)</button>
+					  <button type="button" class="btn btn-default" id="clearRegexBtn">Clear regex</button>
+					  <div class="btn-group" role="group">
+					    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					      Supersigns&amp;Makroses
+					      <span class="caret"></span>
+					    </button>
+					    <ul class="dropdown-menu" name="supersignsAndMakroses">
+					    </ul>
+					  </div>
+				  </div>
+				</div>
+			</div>
+
+			<!-- Adding disjunctive component Modal -->
+			<div class="modal fade" id="AddDisjunctiveComponentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			    	<div class="modal-body">
+				      <form class="form-horizontal">
+							  <div class="form-group">
+							    <div class="btn-group col-sm-offset-2 col-sm-10" role="group">
+							      <button type="button" class="btn btn-default" data-toggle="modal" data-target="#AddSpecialSymbolModal">+S</button>
+							      <button type="button" class="btn btn-default">∨</button>
+
+							      <div class="btn-group" role="group">
+									    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									      Supersigns&amp;Makroses
+									      <span class="caret"></span>
+									    </button>
+									    <ul class="dropdown-menu" name="supersignsAndMakroses">
+									    </ul>
+									  </div>
+							    </div>
+							  </div>
+							  <div class="form-group">
+							    <label for="disjunctiveElementInput" class="col-sm-2 control-label">Epression</label>
+							    <div class="col-sm-10">
+							      <input type="text" class="form-control" id="disjunctiveElementInput">
+							    </div>
+							  </div>
+							  <div class="form-group">
+							    <div class="col-sm-offset-2 col-sm-10">
+							      <button type="button" class="btn btn-default" id="addDisjunctiveComponentBtn">Add</button>
+							    </div>
+							  </div>
+							</form>
+						</div>
+			    </div>
+			  </div>
+			</div>
+
+			<!-- Adding makros component Modal -->
+			<div class="modal fade" id="AddMakrosModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			    	<div class="modal-body">
+				      <form class="form-horizontal">
+							  <div class="form-group">
+							    <div class="btn-group col-sm-offset-2 col-sm-10" role="group">
+							      <button type="button" class="btn btn-default" data-toggle="modal" data-target="#AddSpecialSymbolModal">+S</button>
+							      <button type="button" class="btn btn-default" id="addDisjunctionMakrosModal">∨</button>
+							      
+							      <div class="btn-group" role="group">
+									    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									      Supersigns&amp;Makroses
+									      <span class="caret"></span>
+									    </button>
+									    <ul class="dropdown-menu" name="supersignsAndMakroses">
+									    </ul>
+									  </div>
+							    </div>
+							  </div>
+							  <div class="form-group">
+							    <label for="makrosInput" class="col-sm-2 control-label">Makros</label>
+							    <div class="col-sm-10">
+							      <input type="text" class="form-control" id="makrosInput">
+							    </div>
+							  </div>
+							  <div class="form-group">
+							    <label for="makrosDescription" class="col-sm-2 control-label">Description</label>
+							    <div class="col-sm-10">
+							      <textarea class="form-control" rows="5" id="makrosDescription"></textarea>
+							    </div>
+							  </div>
+							  <div class="form-group">
+							    <div class="col-sm-offset-2 col-sm-10">
+							      <button type="button" class="btn btn-default" id="addMakrosBtn">Add</button>
+							    </div>
+							  </div>
+							</form>
+						</div>
+			    </div>
+			  </div>
+			</div>
+
+			<!-- Adding supersign component Modal -->
+			<div class="modal fade" id="AddSpecialSymbolModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			    	<div class="modal-body">
+				      <form class="form-horizontal">
+							  <!-- <div class="form-group">
+							    <div class="btn-group col-sm-offset-2 col-sm-10" role="group">
+							      <button type="button" class="btn btn-default" id="x2button">X<sub>2</sub></button>
+							    </div>
+							  </div> -->
+							  <div class="form-group">
+							    <label for="supersignElementInput" class="col-sm-2 control-label">Supersign</label>
+							    <div class="col-sm-10">
+							      <input type="text" class="form-control" id="supersignElementInput">
+							    </div>
+							  </div>
+							  <div class="form-group">
+							    <label for="supersignDescription" class="col-sm-2 control-label">Description</label>
+							    <div class="col-sm-10">
+							      <textarea class="form-control" rows="5" id="supersignDescription"></textarea>
+							    </div>
+							  </div>
+							  <div class="form-group">
+							    <div class="col-sm-offset-2 col-sm-10">
+							      <button type="button" class="btn btn-default" id="addButtonSupersignModal">Add</button>
+							    </div>
+							  </div>
+							</form>
+						</div>
+			    </div>
+			  </div>
+			</div>
+
+			<div id="editContainer" class="container">
+
+				<div id="textPointer" class="disjunctiveComponent textPointer">
+					<div> <!-- singlesymbol -->
+						<div>&ensp;</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="panel panel-success">
+				<div class="panel-heading">
+					Makroses
+				</div>
+				<div class="panel-body">
+					<ul id="makrosesPanel">
+						
+					</ul>
+				</div>
+			</div>
+
+			<div class="panel panel-success">
+				<div class="panel-heading">
+					Supersigns
+				</div>
+				<div class="panel-body">
+					<ul id="supersignsPanel">
+						
+					</ul>
+				</div>
+			</div>
+
+			<button class="btn btn-success" id="formRegexBtn">Form regex</button>
+		</div>
+	</div>
+
+
+
+	<div class="container">
+		<div class="bs-border">
+			<div class="table-responsive">
+				<table id="transitionMatrix" class="table table-bordered">
+					
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="bs-border">
+			<div id="regexContainer">
+				<div class="regexElem">
+					<div class="premain">
+						<div>|</div>
+						<div class="place">13..15</div>
+						<div class="place">16..75</div>
+						<div class="place">135..145</div>
+					</div>
+					<div>F</div>
+					<div class="postmain">
+						<div>|</div>
+						<div class="place">145</div>
+					</div>
+				</div>
+
+				<div class="regexElem">
+					<div>U</div>
+					<div class="postmain">
+						<div>|</div>
+						<div class="place">145</div>
+					</div>
+				</div>
+
+				<div class="regexElem">
+					<div>{</div>
+				</div>
+
+				<div class="regexElem">
+					<div class="premain">
+						<div>|</div>
+						<div class="place">13..15</div>
+						<div class="place">16..75</div>
+						<div class="place">135..145</div>
+					</div>
+					<div>U</div>
+					<div class="postmain">
+						<div>|</div>
+						<div class="place">145</div>
+					</div>
+				</div>
+
+				<div class="regexElem">
+					<div>}</div>
+				</div>
+
+				<div class="regexElem">
+					<div class="premain">
+						<div>|</div>
+						<div class="place">13..15</div>
+						<div class="place">16..75</div>
+						<div class="place">135..145</div>
+						<div class="place">135..145</div>
+						<div class="place">135..145</div>
+						<div class="place">135..145</div>
+					</div>
+					<div>F</div>
+					<div class="postmain">
+						<div>|</div>
+						<div class="place">145</div>
+					</div>
+				</div>
+
+				<div class="regexElem">
+					<div>f</div>
+					<div class="postmain">
+						<div>|</div>
+						<div class="place">145</div>
+					</div>
+				</div>
+
+				<div class="regexElem">
+					<div>U</div>
+					<div class="postmain">
+						<div>|</div>
+						<div class="place">145</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+			</div>
+
+	<div class="container">
+		<div class="bs-border" id="regexCanvasContainer">
+			<canvas id="regexCanvas"></canvas>
+		</div>
+	</div>
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/parser.js"></script>
+	<script type="text/javascript" src="js/logic.js"></script>
+	<script type="text/javascript">
+		window.onload = function(){
+			//var struct3 = new Structure(Expression.toArray("(ab{b∨a}b{c∨a}∨b{b}a)"));
+			var array = Expression.toArray("(FUNCL∨FINALL∨((F∨U∨N∨C∨I∨A∨L∨E∨δ)∨(F∨U∨N∨C∨I∨A∨L∨E∨δ)(F∨U∨N∨C∨I∨A∨L∨E∨δ)∨(F∨U∨N∨C∨I∨A∨L∨E∨δ)(F∨U∨N∨C∨I∨A∨L∨E∨δ)(F∨U∨N∨C∨I∨A∨L∨E∨δ)){Ц∨Ц(F∨U∨N∨C∨I∨A∨L∨E∨δ)∨Ц(F∨U∨N∨C∨I∨A∨L∨E∨δ)(F∨U∨N∨C∨I∨A∨L∨E∨δ)∨Ц(F∨U∨N∨C∨I∨A∨L∨E∨δ)(F∨U∨N∨C∨I∨A∨L∨E∨δ)(F∨U∨N∨C∨I∨A∨L∨E∨δ)}L∨{Ц}Ц.{Ц}ЦE(+∨-)(Ц∨ЦЦ)L∨:∨h∨!∨h∨h∨h∨h∨:=∨&&∨!!∨ ∨+∨-∨L)");
+			array[5].value = "L1";
+			array[12].value = "L1";
+			array[255].value = "L1";
+			array[278].value = "L2";
+			array[309].value = "L3";
+			array[282].value = "\\";
+			array[286].value = "'{'";
+			array[288].value = "'}'";
+			array[290].value = "'('";
+			array[292].value = "')'";
+
+			//var array = Expression.toArray("(a∨b∨(c∨cc∨ccc){d∨dd})");
+			//var array = Expression.toArray("(a∨b∨{k(a∨b∨c)∨k(a∨b∨c)(a∨b∨c)∨k(a∨b∨c)(a∨b∨c)(a∨b∨c)}{r∨t})");
+			console.log(Expression.toString(array));
+			var struct3 = new Structure(array);
+			Structure.indexPlaces(struct3);
+			Structure.minimizeRegex(struct3);
+			
+
+			var arr = Structure.getBasicComponents(struct3);
+			for(let i = 0; i < arr.length; i++){
+				console.log(arr[i].value.value, arr[i].premain, arr[i].postmain);
+			}
+
+			drawRegexPlaces(struct3, array);
+
+			var transitionMatrix = Structure.buildTransitionMatrix(struct3);
+			formTable(transitionMatrix, struct3);
+		}
+		function formTable(transitionMatrix, struct){
+
+			var hat = $("<tr>");
+			hat.append( $("<th>").css("border", "1px solid #575757") );
+			var statesRow = $("<tr>");
+			statesRow.append($("<th>").css("border", "1px solid #575757"));
+
+			for(let i = 0; i < transitionMatrix.sygnals.length; i++){
+				var th = $("<th>").css("border", "1px solid #575757");
+
+				switch(transitionMatrix.sygnals[i]){
+					case "start": th.text("Н")
+										.css({
+											"background": "#92D050",
+											"text-align": "center",
+										}); 
+									break;
+					case "working": th.text("Р")
+										.css({
+											"background": "#D8E4BC",
+											"text-align": "center",
+										}); 
+									break;
+					case "end": th.text("К")
+									.css({
+										"background": "#A7B8FF",
+										"text-align": "center",
+									}); 
+									break;
+				}
+
+				hat.append(th);
+				statesRow.append( $("<th>")
+					.text(i)
+					.css({
+						"text-align": "center",
+						"border": "1px solid #575757",
+					}));
+			}
+
+			$('#transitionMatrix').append(hat, statesRow);
+
+			var arr = Structure.getBasicComponents(struct);
+			var dictionary = Structure._getDictionary(arr);
+
+			for(let i = 0; i < transitionMatrix.matrix.length; i++){
+
+				var tr = $("<tr>");
+				tr.append( $("<th>")
+					.text(dictionary[i].symbol.value)
+					.css({
+						"text-align": "center",
+						"border": "1px solid #575757",
+					}) );
+
+				for(let q = 0; q < arr[arr.length-1].postmain[0] + 1; q++){
+					//var td = $("<td/>");
+					if(transitionMatrix.matrix[i][q] === undefined){
+						tr.append( $("<td>")
+							.html("-")
+							.css("text-align", "center") );
+					}else{
+						tr.append( $("<td>")
+							.html(transitionMatrix.matrix[i][q].states.join(", "))
+							.css("text-align", "center") );
+					}
+				}
+				$('#transitionMatrix').append(tr);
+
+			}
+		}
+	</script>>
+</body>
+</html>
